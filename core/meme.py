@@ -1,13 +1,16 @@
 import asyncio
-from typing import Literal
-from astrbot import logger
-from astrbot.core.config.astrbot_config import AstrBotConfig
-from astrbot.core.platform.astr_message_event import AstrMessageEvent
-from .param import ParamsCollector
+import io
 from dataclasses import dataclass, field
+from typing import Literal
 
 from meme_generator import Meme, get_memes
 from meme_generator.version import __version__
+
+from astrbot import logger
+from astrbot.core.config.astrbot_config import AstrBotConfig
+from astrbot.core.platform.astr_message_event import AstrMessageEvent
+
+from .param import ParamsCollector
 
 
 @dataclass
@@ -132,9 +135,11 @@ class MemeManager:
             meme_info += f"默认文本：{p.default_texts}\n"
         if tags:
             meme_info += f"标签：{list(tags)}\n"
-
-        preview: bytes = meme.generate_preview()  # type: ignore
-        return meme_info, preview
+        previewed = meme.generate_preview()
+        image: bytes = (
+            previewed.getvalue() if isinstance(previewed, io.BytesIO) else previewed
+        )
+        return meme_info, image
 
     async def generate_meme(
         self, event: AstrMessageEvent, keyword: str

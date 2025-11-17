@@ -1,8 +1,9 @@
-from random import random
 import base64
 from pathlib import Path
-from typing import Optional, Union
+from random import random
+
 import aiohttp
+
 from astrbot.api import logger
 from astrbot.core.config.astrbot_config import AstrBotConfig
 from astrbot.core.message.components import At, Image, Plain, Reply
@@ -38,7 +39,7 @@ class ParamsCollector:
 
     async def _decode_image(self, src: str) -> bytes | None:
         """统一把 src 转成 bytes"""
-        raw: Optional[bytes] = None
+        raw: bytes | None = None
         # 1. 本地文件
         if Path(src).is_file():
             raw = Path(src).read_bytes()
@@ -84,7 +85,7 @@ class ParamsCollector:
         """收集参数，返回 (images, texts, options)"""
         images: list[tuple[str, bytes]] = []
         texts: list[str] = []
-        options: dict[str, Union[bool, str, int, float]] = {}
+        options: dict[str, bool | str | int | float] = {}
 
         chain = event.get_messages()
         send_id: str = event.get_sender_id()

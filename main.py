@@ -1,13 +1,15 @@
 import asyncio
+
+import astrbot.core.message.components as Comp
 from astrbot import logger
 from astrbot.api.event import filter
 from astrbot.api.star import Context, Star, register
 from astrbot.core import AstrBotConfig
 from astrbot.core.platform import AstrMessageEvent
-import astrbot.core.message.components as Comp
 from astrbot.core.star.filter.event_message_type import EventMessageType
-from .core.param import ParamsCollector
+
 from .core.meme import MemeManager
+from .core.param import ParamsCollector
 from .utils import compress_image
 
 

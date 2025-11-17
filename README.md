@@ -1,3 +1,4 @@
+@ -1,10 +1,11 @@
 <div align="center">
 
 ![:name](https://count.getloli.com/@astrbot_plugin_memelite?name=astrbot_plugin_memelite&theme=minecraft&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto)
@@ -8,8 +9,7 @@ _✨ [AstrBot](https://github.com/AstrBotDevs/AstrBot) 表情包制作插件 ✨
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![AstrBot](https://img.shields.io/badge/AstrBot-3.4%2B-orange.svg)](https://github.com/Soulter/AstrBot)
-[![GitHub](https://img.shields.io/badge/作者-Zhalslar-blue)](https://github.com/Zhalslar)
+@ -13,207 +14,64 @@ _✨ [AstrBot](https://github.com/AstrBotDevs/AstrBot) 表情包制作插件 ✨
 
 </div>
 
@@ -217,8 +217,8 @@ port = 2233  # web server 端口
 
 ## 👥 贡献指南
 
-- 🌟 Star 这个项目！（点右上角的星星，感谢支持！）
-- 🐛 提交 Issue 报告问题
+@ -222,11 +80,10 @@ port = 2233  # web server 端口
+
 - 💡 提出新功能建议
 - 🔧 提交 Pull Request 改进代码
 
