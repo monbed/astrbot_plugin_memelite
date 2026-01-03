@@ -135,6 +135,27 @@ class MemeManager:
             meme_info += f"默认文本：{p.default_texts}\n"
         if tags:
             meme_info += f"标签：{list(tags)}\n"
+        try:
+            args_type = getattr(p, "args_type", None)
+            if args_type and getattr(args_type, "parser_options", None):
+                meme_info += "其它参数(格式: key=value)：\n"
+                for opt in args_type.parser_options:
+                    names = getattr(opt, "names", [])
+                    flags = [n for n in names if isinstance(n, str) and n.startswith("--")]
+                    # 构造参数名部分
+                    names_str = ", ".join(flags) if flags else ", ".join(str(n) for n in names)
+                    part = f"  {names_str}"
+                    # 默认值
+                    default_val = getattr(opt, "default", None)
+                    if default_val is not None:
+                        part += f" (默认={default_val})"
+                    # 帮助文本
+                    help_text = getattr(opt, "help_text", None) or getattr(opt, "help", None)
+                    if help_text:
+                        part += f" ： {help_text}"
+                    meme_info += part + "\n"
+        except Exception:
+            pass
         previewed = meme.generate_preview()
         image: bytes = (
             previewed.getvalue() if isinstance(previewed, io.BytesIO) else previewed
